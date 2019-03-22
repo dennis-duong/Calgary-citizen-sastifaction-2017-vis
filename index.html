@@ -64,9 +64,9 @@
       d3.json("Ward_Boundaries.geojson").then(function(data) {
         var count = -1;
 
-        var color = d3.scaleQuantile()
-          .domain([dataByWardsMetrics[0].value.avgQOL,dataByWardsMetrics[1].value.avgQOL,dataByWardsMetrics[2].value.avgQOL,dataByWardsMetrics[3].value.avgQOL,dataByWardsMetrics[4].value.avgQOL,dataByWardsMetrics[5].value.avgQOL,dataByWardsMetrics[6].value.avgQOL,dataByWardsMetrics[7].value.avgQOL,dataByWardsMetrics[8].value.avgQOL,dataByWardsMetrics[9].value.avgQOL,dataByWardsMetrics[10].value.avgQOL,dataByWardsMetrics[11].value.avgQOL,dataByWardsMetrics[12].value.avgQOL,dataByWardsMetrics[13].value.avgQOL])
-          .range(["rgb(237, 248, 233)", "rgb(186, 228, 179)", "rgb(116,196,118)", "rgb(49,163,84)", "rgb(0,109,44)"]);
+        var color = d3.scaleLinear()
+          .domain([7,8])
+          .range(["#ccf5ff", "#005266"]);
 
         svg.selectAll("path")
           .data(data.features)
@@ -87,7 +87,32 @@
                 return color(dataByWardsMetrics[i].value.avgQOL);
               } 
             }
+        });
+
+        var legend = svg.append("g");
+
+        var legenditem = legend.selectAll(".legenditem")
+          .data(d3.range(10))
+          .enter()
+          .append("g")
+          .attr("transform", function (d,i) { 
+            return "translate(0,"+i*33+")";
+          });
+
+        legenditem.append("rect")
+          .attr("x", width - 300)
+          .attr("y", 50)
+          .attr("width", 6)
+          .attr("height", 30)
+          .style("fill", function(d,i) {
+            return color(i/10+7);
           })
+
+        legenditem.append("text")
+          .attr("x", width - 270)
+          .attr("y", 70)
+          .style("text-anchor", "middle")
+          .text(function(d, i) { return d3.format("0.2f")(i/10+7); });
 
       });
     });
