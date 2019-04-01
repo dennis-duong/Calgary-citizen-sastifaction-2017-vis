@@ -1,4 +1,4 @@
-﻿uid,City_Quadrant,Ward,Household_Income,Household_Tenancy,Highest_Obtained_Education,Age,Children,visible_minority,Gender,QOL,Change_in_QOL,Calgary_living,Calgary_life,Neighbourhood_Safety
+﻿uid,City Quadrant,Ward,Household Income,Household Tenancy,Highest Obtained Education,Average Age,Living with Children,Member of Visible Minority,Gender,Average Quality of Life Rating (1-10),"Change in Quality of Life in Last 3 Years ( 1 = improved, 2 = no change, 3 = worsen)",Average Living in Calgary Rating (1-10),Average Life in Cangary Rating (1-10),Average Neighbourhood Safety Rating (1-4)
 cCV86rbQ,Northwest,Ward 2,Don't Know,Own,Completed high school or less,51,No,No,Male,2,3,4,6,3
 eGF36mtC,Southeast,Ward 12,Don't Know,Own,Some post secondary or college diploma,,No,Don't Know,Male,5,2,5,5,3
 zER49koK,Southwest,Ward 13,"$75,000 to just under $90,000",Own,Some post secondary or college diploma,54,Yes,No,Male,7,2,6,7,3

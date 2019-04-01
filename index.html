@@ -4,31 +4,71 @@
 	<meta charset="utf-8">
 	<title>Calgary Map</title>
 	<style>
-    path {
-      stroke: white;
-      stroke-width: 0.5;
+    body, h1, h2, h3, p {
+      margin: 0;
+      padding: 0;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px;
+      color: #333;
+      font-weight: 400;
     }
-
-    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+    body {
+      overflow: auto
+    }
+    path {
+      stroke-width: 0.3;
+    }
+    .label {
+      fill: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    svg {
+      position:relative;
+    }
 	</style>
-	<script src="/scripts/d3/d3.min.js"></script>
+	<script src="scripts/d3/d3.min.js"></script>
 	<script src="http://d3js.org/topojson.v0.min.js"></script>
   <script src="http://d3js.org/queue.v1.min.js"></script>
 </head>
 <body> 
-  <div id="map"></div>
 	<script>
-    var width = 1000;
-    var height = 1000;
+    var width = 800;
+    var height = 900;
 
-    var svg = d3.select("#map")
+    var svg = d3.select("body")
+    .append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+    var svg2 = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var svg3 = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var svg4 = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var svg5 = d3.select("body")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var svg6 = d3.select("body")
       .append("svg")
       .attr("width", width)
       .attr("height", height);
 
     var projection = d3.geoMercator()
       .center([-114,51])
-      .scale(70000)
+      .scale(60000)
       .translate([width/2, height/2]);
 
     var path = d3.geoPath()
@@ -40,16 +80,15 @@
         .key(function(d) {return d.Ward;})
         .entries(data);
 
-
       var dataByWardsMetrics = d3.nest()
         .key(function(d) {return d.Ward;})
         .rollup(function(v) {return {
           responses: v.length, 
-          avgAge: d3.mean(v, function(d) {return d.Age;}),
-          avgQOL: d3.mean(v, function(d) {return d.QOL;}),
-          avgCalgaryLiving: d3.mean(v, function(d) {return d.Calgary_living;}),
-          avgCalgaryLife: d3.mean(v, function(d) {return d.Calgary_life;}),
-          avgNS: d3.mean(v, function(d) {return d.Neighbourhood_Safety;})
+          avgAge: d3.mean(v, function(d) {return d["Average Age"];}),
+          avgQOL: d3.mean(v, function(d) {return d["Average Quality of Life Rating (1-10)"];}),
+          avgCalgaryLiving: d3.mean(v, function(d) {return d["Average Living in Calgary Rating (1-10)"];}),
+          avgCalgaryLife: d3.mean(v, function(d) {return d["Average Life in Cangary Rating (1-10)"];}),
+          avgNS: d3.mean(v, function(d) {return d["Average Neighbourhood Safety Rating (1-4)"];})
         }; })
         .entries(data);
 
@@ -59,40 +98,67 @@
         .rollup(function(v) {return v.length;})
         .entries(data);
 
-      //console.log(dataByWardsMetrics[0].value.avgQOL);
+      var minorityCountbyWards = d3.nest()
+        .key(function(d) {return d.Ward;})
+        .key(function(d) {return d["Member of Visible Minority"];})
+        .rollup(function(v) {return v.length;})
+        .entries(data);
+
+      var livingWithChildrenCountbyWards = d3.nest()
+        .key(function(d) {return d.Ward;})
+        .key(function(d) {return d["Living with Children"];})
+        .rollup(function(v) {return v.length;})
+        .entries(data);
+
+      console.log(livingWithChildrenCountbyWards);
+
 
       d3.json("Ward_Boundaries.geojson").then(function(data) {
-        var count = -1;
+
+        var questions = ["Average Age", "Average Quality of Life Rating (1-10)", "Average Living in Calgary Rating (1-10)", "Average Life in Cangary Rating (1-10)", "Average Neighbourhood Safety Rating (1-4)"];
+
+        var currentQuestion = 1;
 
         var color = d3.scaleLinear()
           .domain([7,8])
-          .range(["#ccf5ff", "#005266"]);
+          .range(["#e6f2ff","#00264d"]);
 
-        svg.selectAll("path")
+        var Title = svg.append("text")
+          .attr("x", 100)             
+          .attr("y", 50)
+          .attr("text-anchor", "left")  
+          .style("font-size", "20px") 
+          .text(questions[currentQuestion]);
+
+
+        var wards = svg.selectAll("path")
           .data(data.features)
           .enter()
           .append("path")
           .attr("d", path)
-          .attr("fill", function(d) {
-            count++;
-            for (var i = 0; i<dataByWardsMetrics.length; i++) {
-              var tmp1 = ""+dataByWardsMetrics[i].key;
-              var tmp2 = "Ward "+data.features[count].properties.ward_num;
-              // console.log(dataByWardsMetrics[i].key);
-              // console.log( "Ward "+data.features[count].properties.ward_num);
+          .style("stroke", "white")
+          .style("fill", function(d, i) {
+            for (var j = 0; j<dataByWardsMetrics.length; j++) {
+              var tmp1 = ""+dataByWardsMetrics[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
               if (tmp1.localeCompare(tmp2) == 0) {
-                console.log("ward_"+data.features[count].properties.ward_num); 
-                console.log(dataByWardsMetrics[i].value.avgQOL); 
-                console.log(color(dataByWardsMetrics[i].value.avgQOL));
-                return color(dataByWardsMetrics[i].value.avgQOL);
+                return color(dataByWardsMetrics[j].value.avgQOL);
               } 
             }
-        });
+          })
+
+        var label = svg.selectAll(".label")
+          .data(data.features)
+          .enter()
+          .append("text")
+            .attr("class", "label")
+            .attr("transform", function(d) { return "translate( " + path.centroid(d)[0] + "," + (path.centroid(d)[1]+10) + ")"; })
+            .text(function(d, i) { return data.features[i].properties.ward_num;} );
 
         var legend = svg.append("g");
 
         var legenditem = legend.selectAll(".legenditem")
-          .data(d3.range(10))
+          .data(d3.range(6))
           .enter()
           .append("g")
           .attr("transform", function (d,i) { 
@@ -100,19 +166,407 @@
           });
 
         legenditem.append("rect")
-          .attr("x", width - 300)
-          .attr("y", 50)
+          .attr("x", width - 250)
+          .attr("y", 70)
           .attr("width", 6)
           .attr("height", 30)
           .style("fill", function(d,i) {
-            return color(i/10+7);
+            return color(i*2/10+7);
           })
 
         legenditem.append("text")
-          .attr("x", width - 270)
-          .attr("y", 70)
+          .attr("x", width - 225)
+          .attr("y", 90)
           .style("text-anchor", "middle")
-          .text(function(d, i) { return d3.format("0.2f")(i/10+7); });
+          .text(function(d, i) { return d3.format("0.1f")(i*2/10+7); });
+
+        //**************************************************************
+        //**************************************************************
+        //**************************************************************
+
+        var color2 = d3.scaleLinear()
+          .domain([0,9])
+          .range(["#ffd1b3","#cc5200"]);
+
+        var Title2 = svg2.append("text")
+          .attr("x", 100)             
+          .attr("y", 50)
+          .attr("text-anchor", "left")  
+          .style("font-size", "20px") 
+          .text("Non-Racial Minority to Racial Minority Ratio");
+
+        var wards2 = svg2.selectAll("path")
+          .data(data.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "white")
+          .style("fill", function(d, i) {
+            for (var j = 0; j<dataByWardsMetrics.length; j++) {
+              var tmp1 = ""+dataByWardsMetrics[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
+              if (tmp1.localeCompare(tmp2) == 0) {
+                var no = 0;
+                var yes = 0; 
+                for (var k=0; k<3; k++) {
+                  if(minorityCountbyWards[j].values[k].key == "No") {
+                    no = minorityCountbyWards[j].values[k].value;
+                  }
+                  if(minorityCountbyWards[j].values[k].key == "Yes") {
+                    yes = minorityCountbyWards[j].values[k].value;
+                  }
+                }
+                return color2(no/yes);
+              } 
+            }
+          });
+
+        var label2 = svg2.selectAll(".label")
+          .data(data.features)
+          .enter()
+          .append("text")
+            .attr("class", "label")
+            .attr("transform", function(d) { return "translate( " + path.centroid(d)[0] + "," + (path.centroid(d)[1]+10) + ")"; })
+            .text(function(d, i) { return data.features[i].properties.ward_num;} );
+
+        var legend2 = svg2.append("g");
+
+        var legenditem2 = legend2.selectAll(".legenditem")
+          .data(d3.range(9))
+          .enter()
+          .append("g")
+          .attr("transform", function (d,i) { 
+            return "translate(0,"+i*25+")";
+          });
+
+        legenditem2.append("rect")
+          .attr("x", width - 250)
+          .attr("y", 70)
+          .attr("width", 6)
+          .attr("height", 20)
+          .style("fill", function(d,i) {
+            return color2(i);
+          })
+
+        legenditem2.append("text")
+          .attr("x", width - 225)
+          .attr("y", 90)
+          .style("text-anchor", "middle")
+          .text(function(d, i) { return ((i+1)+" to 1"); });
+
+        //**************************************************************
+        //**************************************************************
+        //**************************************************************
+
+
+        var color3 = d3.scaleLinear()
+          .domain([45,60])
+          .range(["#ccffdd","#00ff55"]);
+
+
+        var Title = svg3.append("text")
+          .attr("x", 100)             
+          .attr("y", 50)
+          .attr("text-anchor", "left")  
+          .style("font-size", "20px") 
+          .text(questions[currentQuestion-1]);
+
+
+        var wards = svg3.selectAll("path")
+          .data(data.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "black")
+          .style("fill", "white");
+
+        var circles = svg3.selectAll("circle")
+          .data(data.features)
+          .enter()
+          .append("circle")
+          .attr("cx", function(d) { return path.centroid(d)[0] })
+          .attr("cy",  function(d) { return (path.centroid(d)[1]+10) })
+          .attr("r", function(d, i) {
+            for (var j = 0; j<dataByWardsMetrics.length; j++) {
+              var tmp1 = ""+dataByWardsMetrics[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
+              if (tmp1.localeCompare(tmp2) == 0) {
+                return dataByWardsMetrics[j].value.avgAge/1.5;
+              }
+            }
+          }) 
+          .style("fill", function(d, i) {
+            for (var j = 0; j<dataByWardsMetrics.length; j++) {
+              var tmp1 = ""+dataByWardsMetrics[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
+              if (tmp1.localeCompare(tmp2) == 0) {
+                return color3(dataByWardsMetrics[j].value.avgAge);
+              } 
+            }
+          });
+
+        var label = svg3.selectAll(".label")
+          .data(data.features)
+          .enter()
+          .append("text")
+            .attr("class", "label")
+            .attr("transform", function(d) { return "translate( " + (path.centroid(d)[0]-15) + "," + (path.centroid(d)[1]+15) + ")"; })
+            .text(function(d, i) {
+            for (var j = 0; j<dataByWardsMetrics.length; j++) {
+              var tmp1 = ""+dataByWardsMetrics[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
+              if (tmp1.localeCompare(tmp2) == 0) {
+                return d3.format("0.1f")(dataByWardsMetrics[j].value.avgAge);
+              } 
+            }
+          });
+
+        //**************************************************************
+        //**************************************************************
+        //**************************************************************
+
+
+        var color4 = d3.scaleLinear()
+          .domain([0.6,1.4])
+          .range(["#ffcccc","#e60000"]);
+
+
+        var Title = svg4.append("text")
+          .attr("x", 100)             
+          .attr("y", 50)
+          .attr("text-anchor", "left")  
+          .style("font-size", "20px") 
+          .text("Females to Male Ratio");
+
+
+        var wards = svg4.selectAll("path")
+          .data(data.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "black")
+          .style("fill", "white");
+
+        var circles = svg4.selectAll("circle")
+          .data(data.features)
+          .enter()
+          .append("circle")
+          .attr("cx", function(d) { return path.centroid(d)[0] })
+          .attr("cy",  function(d) { return (path.centroid(d)[1]+10) })
+          .attr("r", function(d, i) {
+            for (var j = 0; j<genderCountbyWards.length; j++) {
+              var tmp1 = ""+genderCountbyWards[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
+              if (tmp1.localeCompare(tmp2) == 0) {
+                return genderCountbyWards[j].values[1].value/genderCountbyWards[j].values[0].value*30;
+              }
+            }
+          }) 
+          .style("fill", function(d, i) {
+            for (var j = 0; j<genderCountbyWards.length; j++) {
+              var tmp1 = ""+genderCountbyWards[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
+              if (tmp1.localeCompare(tmp2) == 0) {
+                return color4(genderCountbyWards[j].values[1].value/genderCountbyWards[j].values[0].value);
+              } 
+            }
+          });
+
+        var label = svg4.selectAll(".label")
+          .data(data.features)
+          .enter()
+          .append("text")
+            .attr("class", "label")
+            .attr("transform", function(d) { return "translate( " + (path.centroid(d)[0]-15) + "," + (path.centroid(d)[1]+15) + ")"; })
+            .text(function(d, i) {
+              for (var j = 0; j<genderCountbyWards.length; j++) {
+                var tmp1 = ""+genderCountbyWards[j].key;
+                var tmp2 = "Ward "+data.features[i].properties.ward_num;
+                if (tmp1.localeCompare(tmp2) == 0) {
+                  return d3.format("0.1f")(genderCountbyWards[j].values[1].value/genderCountbyWards[j].values[0].value);
+                } 
+              }
+            });
+
+        //**************************************************************
+        //**************************************************************
+        //**************************************************************
+
+        var color5 = d3.scaleLinear()
+          .domain([1,4])
+          .range(["#eeccff","#440066"]);
+
+        var Title5 = svg5.append("text")
+          .attr("x", 100)             
+          .attr("y", 50)
+          .attr("text-anchor", "left")  
+          .style("font-size", "20px") 
+          .text(questions[4]);
+
+        var wards5 = svg5.selectAll("path")
+          .data(data.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "black")
+          .style("fill", "white")
+          .style("stroke-width", "0.6")
+
+        var wards5Scale = svg5.selectAll(".scaled")
+          .data(data.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "white")
+          .style("fill", "grey")
+          .attr("transform", function(d, i) {
+              for (var j = 0; j<genderCountbyWards.length; j++) {
+                var tmp1 = ""+genderCountbyWards[j].key;
+                var tmp2 = "Ward "+data.features[i].properties.ward_num;
+                if (tmp1.localeCompare(tmp2) == 0) {
+                  var centroid = path.centroid(d),
+                    x = centroid[0],
+                    y = centroid[1];
+                  return "translate("+x+","+y+")" + "scale("+(dataByWardsMetrics[j].value.avgNS)/4+")" + "translate("+(-x)+","+(-y)+")"
+                } 
+              }
+            })
+          .style("fill", function(d, i) {
+              for (var j = 0; j<dataByWardsMetrics.length; j++) {
+                var tmp1 = ""+dataByWardsMetrics[j].key;
+                var tmp2 = "Ward "+data.features[i].properties.ward_num;
+                if (tmp1.localeCompare(tmp2) == 0) {
+                  return color5(dataByWardsMetrics[j].value.avgNS);
+                } 
+              }
+            });
+  
+
+        var label5 = svg5.selectAll(".label")
+          .data(data.features)
+          .enter()
+          .append("text")
+            .attr("class", "label")
+            .attr("transform", function(d) { return "translate( " + (path.centroid(d)[0]-15) + "," + (path.centroid(d)[1]+15) + ")"; })
+            .text(function(d, i) {
+              for (var j = 0; j<genderCountbyWards.length; j++) {
+                var tmp1 = ""+genderCountbyWards[j].key;
+                var tmp2 = "Ward "+data.features[i].properties.ward_num;
+                if (tmp1.localeCompare(tmp2) == 0) {
+                  return d3.format("0.1f")(dataByWardsMetrics[j].value.avgNS);
+                } 
+              }
+            });
+
+        //**************************************************************
+        //**************************************************************
+        //**************************************************************
+
+        var color6 = d3.scaleLinear()
+          .domain([0,1])
+          .range(["#ffffb3","#cccc00"]);
+
+        var Title6 = svg6.append("text")
+          .attr("x", 100)             
+          .attr("y", 50)
+          .attr("text-anchor", "left")  
+          .style("font-size", "20px") 
+          .text("Lving with Children to Living without Children Ratio");
+
+        var wards6 = svg6.selectAll("path")
+          .data(data.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "black")
+          .style("fill", "white")
+          .style("stroke-width", "0.6")
+
+        var wards6Scale = svg6.selectAll(".scaled")
+          .data(data.features)
+          .enter()
+          .append("path")
+          .attr("d", path)
+          .style("stroke", "white")
+          .style("fill", "grey")
+          .attr("transform", function(d, i) {
+              for (var j = 0; j<genderCountbyWards.length; j++) {
+                var tmp1 = ""+genderCountbyWards[j].key;
+                var tmp2 = "Ward "+data.features[i].properties.ward_num;
+                if (tmp1.localeCompare(tmp2) == 0) {
+                  var nocount = 0;
+                  var yescount = 0;
+                  for (var k = 0; k<3; k++) {
+                    if (livingWithChildrenCountbyWards[j].values[k].key == "Yes") {
+                      yescount = livingWithChildrenCountbyWards[j].values[k].value;
+                    }
+                    if (livingWithChildrenCountbyWards[j].values[k].key == "No") {
+                      nocount = livingWithChildrenCountbyWards[j].values[k].value;
+                    }
+                    if (nocount!=0 && yescount!=0) {
+                      var centroid = path.centroid(d),
+                        x = centroid[0],
+                        y = centroid[1];
+                      return "translate("+x+","+y+")" + "scale("+(yescount/nocount)+")" + "translate("+(-x)+","+(-y)+")"
+                      break;
+                    }
+                  }
+                } 
+              }
+            })
+          .style("fill", function(d, i) {
+            for (var j = 0; j<dataByWardsMetrics.length; j++) {
+              var tmp1 = ""+dataByWardsMetrics[j].key;
+              var tmp2 = "Ward "+data.features[i].properties.ward_num;
+              if (tmp1.localeCompare(tmp2) == 0) {
+                var nocount = 0;
+                var yescount = 0;
+                for (var k = 0; k<3; k++) {
+                  if (livingWithChildrenCountbyWards[j].values[k].key == "Yes") {
+                    yescount = livingWithChildrenCountbyWards[j].values[k].value;
+                  }
+                  if (livingWithChildrenCountbyWards[j].values[k].key == "No") {
+                    nocount = livingWithChildrenCountbyWards[j].values[k].value;
+                  }
+                  if (nocount!=0 && yescount!=0) {
+                    return color6(yescount/nocount);
+                    break;
+                  }
+                }
+              }
+            }
+          });
+  
+
+        var label6 = svg6.selectAll(".label")
+          .data(data.features)
+          .enter()
+          .append("text")
+            .attr("class", "label")
+            .attr("transform", function(d) { return "translate( " + (path.centroid(d)[0]-15) + "," + (path.centroid(d)[1]+15) + ")"; })
+            .style("fill","black")
+            .text(function(d, i) {
+              for (var j = 0; j<livingWithChildrenCountbyWards.length; j++) {
+                var tmp1 = ""+livingWithChildrenCountbyWards[j].key;
+                var tmp2 = "Ward "+data.features[i].properties.ward_num;
+                if (tmp1.localeCompare(tmp2) == 0) {
+                  var nocount = 0;
+                  var yescount = 0;
+                  for (var k = 0; k<3; k++) {
+                    if (livingWithChildrenCountbyWards[j].values[k].key == "Yes") {
+                      yescount = livingWithChildrenCountbyWards[j].values[k].value;
+                    }
+                    if (livingWithChildrenCountbyWards[j].values[k].key == "No") {
+                      nocount = livingWithChildrenCountbyWards[j].values[k].value;
+                    }
+                    if (nocount!=0 && yescount!=0) {
+                      return d3.format("0.2f")(yescount/nocount);
+                      break;
+                    }
+                  }
+                } 
+              }
+            });
 
       });
     });
