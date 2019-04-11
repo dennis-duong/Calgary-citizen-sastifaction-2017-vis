@@ -23,8 +23,37 @@
       font-size: 16px;
       font-weight: bold;
     }
+    .slice_label {
+      fill: white;
+      font-size: 16px;
+    }
     svg {
       position:relative;
+    }
+
+    .tooltip {
+      position: absolute;
+      padding: 7px;
+      font-size: 1em;
+      pointer-events: none;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+
+      -moz-box-shadow:    3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+      -webkit-box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+      box-shadow:         3px 3px 10px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    .tooltip p {
+      margin: 0;
+      padding: 0;
+    }
+
+    .tooltip table {
+      margin: 0;
+      padding: 0;
+      border-collapse: collapse;
     }
 	</style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -36,20 +65,21 @@
 <body>
   <div class="container m-2">
   <div class="row">
-    <div class="form-group col-4">
-      <label for="sel1">Select:</label>
+    <div class="col-1"></div>
+    <div class="form-group col-7">
+      <label for="sel1"></label>
       <select class="form-control" id="sel1" onChange="updateMap(this.value)">
-        <option value="avgAge">1</option>
-        <option value="avgQOL">2</option>
-        <option value="avgCalgaryLife">3</option>
-        <option value="avgCalgaryLiving">4</option>
-        <option value="avgNS">5</option>
+        <option value="avgAge" selected>Average Age</option>
+        <option value="avgQOL" selected>Overall quality of life in the City of Calgary rating (1-10)</option>
+        <option value="avgCalgaryLife">Calgary is a great place to make a life rating. (1-10)</option>
+        <option value="avgCalgaryLiving">Calgary is a great place to make a living rating. (1-10)</option>
+        <option value="avgNS">How safe do you feel walking alone in your neighborhood after dark rating (1-4)</option>
       </select>
     </div>
   </div>
-    <div class = "row">
-      <div class = "svg-container">
-      </div>
+    <div class = "">
+      <div class = "svg-container"></div>
+      <div class = "bar-graph-container"></div>
     </div>
   </div>
 	<script>
@@ -60,56 +90,22 @@
         });
     };
 
-    function updateMap(value) {
-      console.log(value);
+    var width = 1200;
+    var height = 800;
 
-      var min = Math.floor(d3.min(sortedDataByWards,function(d){
-        return d.value[value];
-      }));
-      console.log(min);
-      var max = Math.ceil(d3.max(sortedDataByWards,function(d){
-        return d.value[value];
-      }));
-      console.log(max);
-
-      var minColor = "#e6f2ff";
-      var maxColor = "#00264d";
-
-      var color = d3.scaleLinear()
-        .domain([min,max])
-        .range([minColor,maxColor]);
-
-
-      var wards = svg.selectAll(".wardPaths")
-        .transition()
-        .style("fill", function(d, i) {
-          //console.log(d.properties.ward_num);
-          return color(sortedDataByWards[d.properties.ward_num-1].value[value]);
-        })
-
-        var label = svg.selectAll(".label")
-          .transition()
-          .attr("transform", function(d) { 
-            if (value=="avgAge") {
-              return "translate( " + (path.centroid(d)[0]-15) + "," + (path.centroid(d)[1]+15) + ")"; 
-            } else {
-              return "translate( " + (path.centroid(d)[0]-10) + "," + (path.centroid(d)[1]+15) + ")"; 
-            }
-          })
-          .text(function(d, i) { return d3.format("0.1f")(sortedDataByWards[d.properties.ward_num-1].value[value])
-          });
-    }
-
-    var width = 1000;
-    var height = 1000;
+    var h_width = 800;
+    var h_height = 400;
 
     var jsonData;
     var sortedDataByWards;
+    var pie_data;
+    var sortedGenderCounts;
+    var pie;
+    var arcs;
 
-    var barGraphSvg = d3.select(".svg-container")
-      .append("svg")
-      .attr("width", 1200)
-      .attr("height", 400);
+    var tooltip = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
 
     var svg = d3.select(".svg-container")
       .append("svg")
@@ -119,7 +115,7 @@
     var projection = d3.geoMercator()
       .center([-114,51])
       .scale(60000)
-      .translate([width/2, height/2]);
+      .translate([width/2-100, height/2]);
 
     var path = d3.geoPath()
       .projection(projection);
@@ -156,6 +152,10 @@
         .rollup(function(v) {return v.length;})
         .entries(data);
 
+      sortedGenderCounts = sortData(genderCountbyWards);
+
+      console.log(sortedGenderCounts[0].values);
+
       var minorityCountbyWards = d3.nest()
         .key(function(d) {return d.Ward;})
         .key(function(d) {return d["Member of Visible Minority"];})
@@ -168,29 +168,50 @@
         .rollup(function(v) {return v.length;})
         .entries(data);
 
-      var x = d3.scaleBand()
-          .range([0, width])
-          .padding(0.1);
-      var y = d3.scaleLinear()
-          .range([height, 0]);
+      pie_data = sortedGenderCounts[0].values;
 
-      var barGraph = barGraphSvg.append("g")
+      pie = svg.append("g")
+        .attr("transform", "translate(900,150)")
 
-      x.domain([1,2,3,4,5,6,7,8,9,10,11,12,13,14]);
-      y.domain(0, d3.max(sortedDataByWards,function(d){ 
-        return d.value["responses"];
-      }));
-          
-      var bars = barGraphSvg.selectAll(".bar")
-        .data(sortedDataByWards)
+      var slice_data = d3.pie()
+        .value(function(d) {return d.value;})
+        (pie_data)
+      
+      console.log(slice_data);
+
+      var pie_color = d3.scaleOrdinal(d3.schemeSet1);
+
+      arcs = d3.arc()
+        .innerRadius(0)
+        .outerRadius(100)
+        .padRadius(50);
+
+      var slices = pie.selectAll("path")
+        .data(slice_data)
         .enter()
-        .append("rect")
-        .attr("class", "bar") 
-        .attr("x", function(d) { console.log(d); return 75*d.key.split(" ")[1]; })
-        .attr("width", 50)
-        .attr("y", function(d) { return d.value.responses; })
-        .attr("height", function(d) { return height-d.value.responses; });
+        .append("path")
+        .attr("class", "slice_path")
+        .attr("d", arcs)
+        .style("fill", function(d) {
+          return pie_color(d.data.key);
+        })
 
+      var slice_label = pie.selectAll(".slice_label")
+        .data(slice_data)
+        .enter()
+        .append("text")
+        .attr("class", "slice_label")
+        .attr("x", function(d){ return(arcs.centroid(d)[0])-20})
+        .attr("y", function(d){ return(arcs.centroid(d)[1])})
+        .text(function(d, i) { return d.data.key})
+
+      var Title = svg.append("text")
+        .attr("class", "pie_title")
+        .attr("x", 865)             
+        .attr("y", 25)
+        .attr("text-anchor", "left")  
+        .style("font-size", "20px") 
+        .text("WARD 1");
 
       d3.json("Ward_Boundaries.geojson").then(function(data) {
 
@@ -201,20 +222,19 @@
         var min = Math.floor(d3.min(sortedDataByWards,function(d){
           return d.value[value];
         }));
-        console.log(min);
         var max = Math.ceil(d3.max(sortedDataByWards,function(d){
           return d.value[value];
         }));
-        console.log(max);
 
-        var minColor = "#e6f2ff";
-        var maxColor = "#00264d";
+        var minColor = "#80ff80";
+        var maxColor = "#004d00";
 
         var color = d3.scaleLinear()
           .domain([min,max])
           .range([minColor,maxColor]);
 
-        var map = svg.append("g");
+        var map = svg.append("g")
+          .attr("class", "map");
 
         var wards = map.selectAll("path")
           .data(data.features)
@@ -227,6 +247,50 @@
             //console.log(d.properties.ward_num);
             return color(sortedDataByWards[d.properties.ward_num-1].value[value]);
           })
+
+        wards
+          .on("mouseover", function(d) {
+            tooltip.transition()
+            .duration(250)
+            .style("opacity", 1);
+            tooltip.html(
+              "<p><strong>"+d.properties.label+"</strong></p>"
+              +"<table><tbody>"
+              +"<tr><td>"
+              + "Number of Responses:&nbsp;"
+              +"</td><td>"
+              + sortedDataByWards[d.properties.ward_num-1].value["responses"]
+              +"</td></tr>"
+              +"<tr><td>"
+              + "Number of " + sortedGenderCounts[d.properties.ward_num-1].values[0].key +":&nbsp;"
+              +"</td><td>"
+              + sortedGenderCounts[d.properties.ward_num-1].values[0].value
+              +"</td></tr>"
+              +"<tr><td>"
+              + "Number of " + sortedGenderCounts[d.properties.ward_num-1].values[1].key +":&nbsp;"
+              +"</td><td>"
+              + sortedGenderCounts[d.properties.ward_num-1].values[1].value
+              +"</td></tr>"
+              +"</tbody></table>"
+            )
+            .style("left", path.centroid(d)[0] + "px")
+            .style("top", path.centroid(d)[1] + "px");
+          })
+          .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(250)
+            .style("opacity", 0);
+          })
+          .on("click", function(d) {
+            updatePie(d);
+          })
+
+        /*var Title = svg.append("text")
+          .attr("x", 400)             
+          .attr("y", 25)
+          .attr("text-anchor", "left")  
+          .style("font-size", "20px") 
+          .text("Averages");*/
 
         /*var circles = map.selectAll("circle")
           .data(data.features)
@@ -246,6 +310,7 @@
             .text(function(d, i) { return d3.format("0.1f")(sortedDataByWards[d.properties.ward_num-1].value[value])
             });
 
+
         var legend = map.append("g");
 
         var legenditem = legend.selectAll(".legenditem")
@@ -257,21 +322,147 @@
           });
 
         legenditem.append("rect")
-          .attr("x", width - 250)
+          .attr("class", "legend-rect")
+          .attr("x", width - 520)
           .attr("y", 70)
           .attr("width", 6)
           .attr("height", 30)
           .style("fill", function(d,i) {
-            return color(i*2/10+min);
+            return color(i*((max-min)/6)+min);
           })
 
-        legenditem.append("text")
-          .attr("x", width - 225)
+        // legenditem.append("text")
+        //   .attr("x", width - 270)
+        //   .attr("y", 90)
+        //   .style("text-anchor", "middle")
+        //   .text(function(d, i) { return d3.format("0.1f")(i*2/10+min); });
+
+        legend.append("text")
+          .attr("class", "legend-min")
+          .attr("x", width - 500)
           .attr("y", 90)
           .style("text-anchor", "middle")
-          .text(function(d, i) { return d3.format("0.1f")(i*2/10+min); });
+          .text(min);
+
+        legend.append("text")
+          .attr("class", "legend-max")
+          .attr("x", width - 500)
+          .attr("y", 8*32)
+          .style("text-anchor", "middle")
+          .text(max);
       });
     });
+
+    function updateMap(value) {
+      console.log(value);
+
+      var min = Math.floor(d3.min(sortedDataByWards,function(d){
+        return d.value[value];
+      }));
+      console.log(min);
+      var max = Math.ceil(d3.max(sortedDataByWards,function(d){
+        return d.value[value];
+      }));
+      if(value=="avgCalgaryLife") {
+        max = 8.1;
+      }
+      console.log(max);
+
+      var minColor = "#e6f2ff";
+      var maxColor = "#00264d";
+
+      if(value=="avgNS") {
+        minColor = "#d6d6f5";
+        maxColor = "#24248f";
+      }
+      if (value=="avgAge") {
+        minColor = "#80ff80";
+        maxColor = "#004d00";
+      }
+
+      var color = d3.scaleLinear()
+        .domain([min,max])
+        .range([minColor,maxColor]);
+
+
+      var wards = svg.selectAll(".wardPaths")
+        .transition()
+        .style("fill", function(d, i) {
+          //console.log(d.properties.ward_num);
+          return color(sortedDataByWards[d.properties.ward_num-1].value[value]);
+        })
+
+      var label = svg.selectAll(".label")
+        .transition()
+        .attr("transform", function(d) { 
+          if (value=="avgAge") {
+            return "translate( " + (path.centroid(d)[0]-15) + "," + (path.centroid(d)[1]+15) + ")"; 
+          } else {
+            return "translate( " + (path.centroid(d)[0]-10) + "," + (path.centroid(d)[1]+15) + ")"; 
+          }
+        })
+        .text(function(d, i) { return d3.format("0.1f")(sortedDataByWards[d.properties.ward_num-1].value[value])
+        });
+
+      var legendmin = svg.selectAll(".legend-min")
+        .transition()
+        .text(min);
+
+      var legendmax = svg.selectAll(".legend-max")
+        .transition()
+        .text(max);
+
+      var legendRect = svg.selectAll(".legend-rect")
+        .transition()
+        .style("fill", function(d,i) {
+          return color(i*((max-min)/6)+min);
+        })
+    }
+
+    function updatePie(d) {
+      pie_data = sortedGenderCounts[d.properties.ward_num-1].values;
+      console.log(pie_data[0]);
+      console.log(pie_data[1]);
+      if(pie_data[0].key == "Male") {
+        var temp = pie_data[0];
+        pie_data[0] = pie_data[1];
+        pie_data[1] = temp;
+      }
+
+      var pie_color = d3.scaleOrdinal(d3.schemeSet1);
+
+      var slice_data = d3.pie()
+        .value(function(d) {return d.value;})
+        (pie_data)
+
+      var pie_color = d3.scaleOrdinal(d3.schemeSet1);
+
+      arcs = d3.arc()
+        .innerRadius(0)
+        .outerRadius(100)
+        .padRadius(50);
+
+      var slices = svg.selectAll(".slice_path")
+        .data(slice_data)
+       
+      slices
+        .transition(750)
+        .attr("d", arcs)
+
+      var slice_label = pie.selectAll(".slice_label")
+        .data(slice_data)
+
+      slice_label
+        .transition(750)
+        .attr("x", function(d){ return(arcs.centroid(d)[0])-20})
+        .attr("y", function(d){ return(arcs.centroid(d)[1])})
+        .text(function(d, i) { return d.data.key})
+
+
+      var title = svg.selectAll(".pie_title")
+        .transition()
+        .text(d.properties.label);
+    }
 	</script>
 </body>
 </html>
