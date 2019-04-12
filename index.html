@@ -59,6 +59,10 @@
       padding: 0;
       border-collapse: collapse;
     }
+
+    .wardPaths {
+      cursor: pointer;
+    }
 	</style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -75,10 +79,10 @@
     <div class="col-1"></div>
     <div class="col-5">
       <div class="form-group mx-auto">
-        <label for="sel1">Select one:</label>
+        <label for="sel1 mb-2"></label>
         <select class="form-control" id="sel1" onChange="updateMap(this.value)">
           <option value="avgAge" selected>Average Age</option>
-          <option value="avgQOL" selected>Overall quality of life in the City of Calgary rating (1-10)</option>
+          <option value="avgQOL">Overall quality of life in the City of Calgary rating (1-10)</option>
           <option value="avgCalgaryLife">Calgary is a great place to make a life rating. (1-10)</option>
           <option value="avgCalgaryLiving">Calgary is a great place to make a living rating. (1-10)</option>
           <option value="avgNS">How safe do you feel walking alone in your neighborhood after dark rating (1-4)</option>
