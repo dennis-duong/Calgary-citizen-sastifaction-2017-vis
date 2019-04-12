@@ -13,7 +13,7 @@
       font-weight: 400;
     }
     body {
-      overflow: auto
+      overflow: hidden;
     }
     path {
       stroke-width: 0.3;
@@ -24,21 +24,23 @@
       font-weight: bold;
     }
     .slice_label {
-      fill: black;
+      fill: white;
       font-size: 16px;
     }
     .slice_percentages {
-      fill: black;
+      fill: white;
       font-size: 16px;
     }
     svg {
       position:relative;
+      display: block;
+      margin: auto;
     }
 
     .tooltip {
-      position: absolute;
+      position: fixed;
       padding: 7px;
-      font-size: 1em;
+      font-size: 14px;
       pointer-events: none;
       background: #fff;
       border: 1px solid #ccc;
@@ -73,24 +75,20 @@
 <body>
   <div class="container-fluid m-2 h-100">
   <div class="row">
-    <h4 class="mx-auto">Calgary Citizen Satisfaction Survery 2017 Visualization</h4>
+    <h4 class="mx-auto" style="margin-bottom: 30px">Calgary Citizen Satisfaction Survery 2017 Visualization</h4>
   </div>
-  <div class="row">
-    <div class="col-1"></div>
-    <div class="col-5">
-      <div class="form-group mx-auto">
-        <label for="sel1 mb-2"></label>
-        <select class="form-control" id="sel1" onChange="updateMap(this.value)">
+  <div class="" style="text-align: center;">
+        <label for="sel1 mb-2">Select one:</label>
+        <select class="" id="sel1" onChange="updateMap(this.value)" style="display:block; margin:auto">
           <option value="avgAge" selected>Average Age</option>
           <option value="avgQOL">Overall quality of life in the City of Calgary rating (1-10)</option>
           <option value="avgCalgaryLife">Calgary is a great place to make a life rating. (1-10)</option>
           <option value="avgCalgaryLiving">Calgary is a great place to make a living rating. (1-10)</option>
           <option value="avgNS">How safe do you feel walking alone in your neighborhood after dark rating (1-4)</option>
         </select>
-      </div>
-    </div>
+
   </div>
-    <div class = "svg-container"></div>
+    <div class = "svg-container" style="margin-top: 30px;"></div>
   </div>
 	<script>
 
@@ -106,7 +104,7 @@
       });
     };
 
-    var width = 1400;
+    var width = 1500;
     var height = 800;
 
     var jsonData;
@@ -119,7 +117,7 @@
     var arcs3;
     var arcs4;
 
-    var tooltip = d3.select("body").append("div")
+    var tooltip = d3.select(".svg-container").append("div")
       .attr("class", "tooltip")
       .style("opacity", 0);
 
@@ -127,12 +125,12 @@
       .append("svg")
       .attr("width", width)
       .attr("height", height)
-      .attr("transform", "translate(200,0)");
+      .attr("transform", "translate(0,0)");
 
     var projection = d3.geoMercator()
       .center([-114,51])
       .scale(60000)
-      .translate([width/2-300, height/2]);
+      .translate([400, height/2]);
 
     var path = d3.geoPath()
       .projection(projection);
@@ -212,7 +210,7 @@
       pie_data = sortData2(sortedGenderCounts[0].values);
 
       pie = svg.append("g")
-        .attr("transform", "translate(850,250)")
+        .attr("transform", "translate(750,250)")
 
       var slice_data = d3.pie()
         .value(function(d) {return d.value;})
@@ -282,7 +280,7 @@
 
       var Title = svg.append("text")
         .attr("class", "pie_subtitle")
-        .attr("x", 830)             
+        .attr("x", 730)             
         .attr("y", 125)
         .attr("text-anchor", "left")  
         .style("font-size", "20px") 
@@ -295,7 +293,7 @@
       pie_data = sortData2(sortedLivingWithChildrenCount[0].values);
 
       pie2 = svg.append("g")
-        .attr("transform", "translate(850,550)")
+        .attr("transform", "translate(750,550)")
 
       var slice_data = d3.pie()
         .value(function(d) {return d.value;})
@@ -304,7 +302,7 @@
 
       var pie_color = d3.scaleOrdinal(d3.schemeSet1);
 
-      arcs2 = d3.arc()
+      arcs = d3.arc()
         .innerRadius(0)
         .outerRadius(100)
         .padRadius(50);
@@ -366,11 +364,11 @@
 
         var Title = svg.append("text")
         .attr("class", "pie_subtitle")
-        .attr("x", 765)             
+        .attr("x", 665)             
         .attr("y", 425)
         .attr("text-anchor", "left")  
         .style("font-size", "20px") 
-        .text("Living with children?");
+        .text("Living with children");
 
       //////////////////////////////////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////////////////////////////////
@@ -381,7 +379,7 @@
       pie_data = sortData2(sortedMinorityCounts[0].values);
 
       pie3 = svg.append("g")
-        .attr("transform", "translate(1100,250)")
+        .attr("transform", "translate(1000,250)")
 
       var slice_data = d3.pie()
         .value(function(d) {return d.value;})
@@ -389,7 +387,7 @@
       
       var pie_color = d3.scaleOrdinal(d3.schemeSet1);
 
-      arcs3 = d3.arc()
+      arcs = d3.arc()
         .innerRadius(0)
         .outerRadius(100)
         .padRadius(50);
@@ -451,22 +449,22 @@
 
         var Title = svg.append("text")
         .attr("class", "pie_subtitle")
-        .attr("x", 975)             
+        .attr("x", 875)             
         .attr("y", 125)
         .attr("text-anchor", "left")  
         .style("font-size", "20px") 
-        .text("Member of visible minority?");
+        .text("Member of visible minority");
 
       //////////////////////////////////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////////////////////////////////
 
-       //////////////////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////////////////////////////////
 
       pie_data = sortData2(sortedHighestEducation[0].values);
 
       pie4 = svg.append("g")
-        .attr("transform", "translate(1100,550)")
+        .attr("transform", "translate(1000,550)")
 
       var slice_data = d3.pie()
         .value(function(d) {return d.value;})
@@ -474,7 +472,7 @@
 
       var pie_color = d3.scaleOrdinal(d3.schemeCategory10);
 
-      arcs4 = d3.arc()
+      arcs = d3.arc()
         .innerRadius(0)
         .outerRadius(100)
         .padRadius(50);
@@ -536,11 +534,96 @@
 
         var Title = svg.append("text")
         .attr("class", "pie_subtitle")
-        .attr("x", 975)             
+        .attr("x", 875)             
         .attr("y", 425)
         .attr("text-anchor", "left")  
         .style("font-size", "20px") 
-        .text("Highest Obtained Education?");
+        .text("Highest Obtained Education");
+
+      //////////////////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////////////////////
+
+      //////////////////////////////////////////////////////////////////////////////////////////////
+      //////////////////////////////////////////////////////////////////////////////////////////////
+
+      pie_data = sortData2(sortedHouseholdIncome[0].values);
+
+      pie5 = svg.append("g")
+        .attr("transform", "translate(1300,400)")
+
+      var slice_data = d3.pie()
+        .value(function(d) {return d.value;})
+        (pie_data)
+
+      var pie_color = d3.scaleOrdinal(d3.schemeCategory10);
+
+      arcs = d3.arc()
+        .innerRadius(0)
+        .outerRadius(150)
+        .padRadius(50);
+
+      var slices = pie5.selectAll("path")
+        .data(slice_data)
+        .enter()
+        .append("path")
+        .attr("class", "slice_path")
+        .attr("d", arcs)
+        .style("fill", function(d) {
+          return pie_color(d.data.key);
+        })
+
+      slices
+        .on("mouseover", function(d) {
+            tooltip.transition()
+            .duration(250)
+            .style("opacity", 1);
+            tooltip.html(
+              "<p><strong>"+d.data.key+"</strong></p>"
+              +"<table><tbody>"
+              +"<tr><td>"
+              + "Number:&nbsp;"
+              +"</td><td>"
+              + d.data.value
+              +"</td></tr>"
+              +"<tr><td>"
+              +"</tbody></table>"
+            )
+            .style("left",  (d3.event.pageX + 15) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+          })
+          .on("mouseout", function(d) {
+            tooltip.transition()
+            .duration(250)
+            .style("opacity", 0);
+          })
+
+      /*var slice_label = pie5.selectAll(".slice_label")
+        .data(slice_data)
+        .enter()
+        .append("text")
+        .attr("pointer-events", "none")
+        .attr("class", "slice_label")
+        .attr("x", function(d){ return(arcs.centroid(d)[0])-20})
+        .attr("y", function(d){ return(arcs.centroid(d)[1])})
+        .text(function(d, i) { return d.data.key})*/
+
+      var slice_percentages = pie5.selectAll(".slice_percentages")
+        .data(slice_data)
+        .enter()
+        .append("text")
+        .attr("pointer-events", "none")
+        .attr("class", "slice_percentages")
+        .attr("x", function(d){ return(arcs.centroid(d)[0])-10})
+        .attr("y", function(d){ return(arcs.centroid(d)[1])})
+        .text(function(d, i) { return d3.format("0.0f")(d.value/sortedDataByWards[0].value["responses"]*100)+"%";})
+
+        var Title = svg.append("text")
+        .attr("class", "pie_subtitle")
+        .attr("x", 1215)             
+        .attr("y", 225)
+        .attr("text-anchor", "left")  
+        .style("font-size", "20px") 
+        .text("Household Income");
 
       //////////////////////////////////////////////////////////////////////////////////////////////
       //////////////////////////////////////////////////////////////////////////////////////////////
@@ -573,12 +656,21 @@
           .enter()
           .append("path")
           .attr("class", "wardPaths")
+          .attr("id", d=>"ward_"+d.properties.ward_num)
           .attr("d", path)
-          .style("stroke", "white")
+          .style("stroke", function(d, i) {
+            return d.properties.ward_num==1?"black":"white";
+          })
+          .style("stroke-width", function(d, i) {
+            return d.properties.ward_num==1?2:0.3;
+          })
           .style("fill", function(d, i) {
             //console.log(d.properties.ward_num);
             return color(sortedDataByWards[d.properties.ward_num-1].value[value]);
           })
+
+        map.select("#ward_1")
+          .raise();
 
         wards
           .on("mouseover", function(d) {
@@ -616,8 +708,21 @@
             updatePie(d,2,2);
             updatePie(d,1,3);
             updatePie(d,4,4);
-            console.log(arr);
+            updatePie(d,3,5);
+            console.log(arr); 
             var currentWard = d3.select(arr[i]);
+            d3.selectAll(arr)
+              .style("stroke","white")
+              .style("stroke-width", 0.3);
+
+            currentWard
+              .style("stroke", "black")
+              .style("stroke-width", 2)
+              .raise();
+
+            map.selectAll(".label")
+              .raise();
+
             console.log(currentWard);
           })
 
@@ -660,7 +765,7 @@
 
         legenditem.append("rect")
           .attr("class", "legend-rect")
-          .attr("x", width - 820)
+          .attr("x", 570)
           .attr("y", 70)
           .attr("width", 6)
           .attr("height", 30)
@@ -676,14 +781,14 @@
 
         legend.append("text")
           .attr("class", "legend-min")
-          .attr("x", width - 800)
+          .attr("x", 590)
           .attr("y", 90)
           .style("text-anchor", "middle")
           .text(min);
 
         legend.append("text")
           .attr("class", "legend-max")
-          .attr("x", width - 800)
+          .attr("x", 590)
           .attr("y", 8*32)
           .style("text-anchor", "middle")
           .text(max);
@@ -764,7 +869,6 @@
 
       var pie_data = sortData2(pie_data_arr[index]);
 
-      var pie_color = d3.scaleOrdinal(d3.schemeSet1);
 
       var slice_data = d3.pie()
         .value(function(d) {return d.value;})
@@ -801,7 +905,7 @@
           .data(slice_data)
 
         slices
-          .attr("d", arcs2)
+          .attr("d", arcs)
 
       } else if (pie_num == 3) {
         var slices = pie3.selectAll(".slice_path")
@@ -814,9 +918,11 @@
           .data(slice_data)
 
         slices
-          .attr("d", arcs3)
+          .attr("d", arcs)
 
       } else if (pie_num == 4) {
+        var pie_color = d3.scaleOrdinal(d3.schemeCategory10); 
+
         var slices = pie4.selectAll(".slice_path")
         .data(slice_data)
 
@@ -827,7 +933,26 @@
           .data(slice_data)
         
         slices
-          .attr("d", arcs4)
+          .attr("d", arcs)
+      } else if (pie_num == 5) {
+        var pie_color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        arcs = d3.arc()
+          .innerRadius(0)
+          .outerRadius(150)
+          .padRadius(50); 
+
+        var slices = pie5.selectAll(".slice_path")
+        .data(slice_data)
+
+        var slice_label = pie5.selectAll(".slice_label")
+          .data(slice_data)
+
+        var slice_percentages = pie5.selectAll(".slice_percentages")
+          .data(slice_data)
+        
+        slices
+          .attr("d", arcs)
       }
 
       var p_divisor = sortedDataByWards[d.properties.ward_num-1].value["responses"];
@@ -840,13 +965,13 @@
 
       slice_label
         .transition()
-        .attr("x", function(d){ return(arcs.centroid(d)[0])-20})
+        .attr("x", function(d){ return(arcs.centroid(d)[0])-10})
         .attr("y", function(d){ return(arcs.centroid(d)[1])})
         .text(function(d, i) { return d.data.key})     
 
       slice_percentages
         .transition()
-        .attr("x", function(d){ return(arcs.centroid(d)[0])-20})
+        .attr("x", function(d){ return(arcs.centroid(d)[0])-10})
         .attr("y", function(d){ return(arcs.centroid(d)[1])+20})
         .text(function(d, i) { return d3.format("0.0f")(d.value/p_divisor*100)+"%";})
 
