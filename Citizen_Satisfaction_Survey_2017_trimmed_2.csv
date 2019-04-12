@@ -32,7 +32,7 @@ aQQ68qmH,Southeast,Ward 12,"$120,000 and over (Net)",Own,Completed university de
 bVE43mdZ,Southwest,Ward 13,"$45,000 to just under $60,000",Own,Completed high school or less,69,No,No,Male,7,2,7,9,4
 jZL15ymZ,Southwest,Ward 13,"$75,000 to just under $90,000",Own,Some post secondary or college diploma,59,Yes,No,Male,8,2,7,8,4
 gXO85mmA,Southwest,Ward 11,"$45,000 to just under $60,000",Own,Some post secondary or college diploma,69,No,Yes,Male,7,1,6,6,4
-oBV71gpA,Southeast,Ward 14,Don't Know,Own,Don't Know,34,No,No,Male,6,2,3,3,3
+oBV71gpA,Southeast,Ward 14,Don't Know,Own,Completed high school or less,34,No,No,Male,6,2,3,3,3
 eLU21icW,Northeast,Ward 9,Don't Know,Own,Some post secondary or college diploma,62,No,No,Male,5,3,3,5,3
 uHH60nbY,Southwest,Ward 11,"$75,000 to just under $90,000",Own,Completed university degree or post-grad degree,66,No,No,Female,8,3,7,7,2
 oGZ26lvO,Southeast,Ward 14,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,47,Yes,No,Female,7,3,4,9,3
@@ -231,7 +231,7 @@ mKH12voO,Northeast,Ward 5,"$60,000 to just under $75,000",Own,Some post secondar
 vAK13jtM,Northeast,Ward 5,"$30,000 to just under $45,000",Own,Some post secondary or college diploma,23,No,No,Female,8,3,5,9,3
 uBT79eyD,Northeast,Ward 10,"$120,000 and over (Net)",Own,Some post secondary or college diploma,62,No,No,Male,5,3,5,5,3
 xVZ98kwM,Northeast,Ward 5,"Less than $30,000",Own,Completed high school or less,63,No,No,Male,1,3,1,1,3
-fKL33mvE,Northeast,Ward 10,Don't Know,Own,Completed high school or less,44,Don't Know,No,Male,7,3,9,9,3
+fKL33mvE,Northeast,Ward 10,Don't Know,Own,Completed high school or less,44,No,No,Male,7,3,9,9,3
 iZR95vrQ,Northeast,Ward 10,"Less than $30,000",Own,Some post secondary or college diploma,60,No,No,Female,3,3,7,7,2
 kXW22qvJ,Southeast,Ward 14,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,43,Yes,No,Female,8,2,9,9,3
 oRJ78ufJ,Southwest,Ward 8,"$90,000 to just under $105,000",Own,Completed university degree or post-grad degree,72,No,Yes,Female,8,2,8,8,2
@@ -342,7 +342,7 @@ kTM46qtP,Northwest,Ward 1,"$120,000 and over (Net)",Own,Some post secondary or c
 gZV62taP,Northwest,Ward 1,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,58,No,No,Male,8,3,7,9,3
 zAC47nlB,Northwest,Ward 1,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,69,No,No,Male,8,2,7,8,4
 yFH80mjP,Northwest,Ward 2,"$75,000 to just under $90,000",Own,Completed university degree or post-grad degree,43,No,No,Male,9,2,10,10,4
-bPY86lbC,Northwest,Ward 1,Don't Know,Don't Know,Completed university degree or post-grad degree,,Don't Know,No,Female,7,3,6,8,3
+bPY86lbC,Northwest,Ward 1,Don't Know,Don't Know,Completed university degree or post-grad degree,,No,No,Female,7,3,6,8,3
 aWC94jrZ,Northwest,Ward 1,"Less than $30,000",Own,Completed high school or less,72,No,No,Female,8,1,8,10,3
 jGV14whN,Northwest,Ward 4,"$90,000 to just under $105,000",Rent,Some post secondary or college diploma,48,Yes,No,Male,10,3,10,10,4
 jQB37fcF,Northwest,Ward 1,"Less than $30,000",Own,Some post secondary or college diploma,71,No,No,Female,8,1,7,7,4
@@ -464,7 +464,7 @@ tIJ84ekK,Northwest,Ward 4,"$60,000 to just under $75,000",Own,Some post secondar
 oJI36zgU,Northwest,Ward 2,"$120,000 and over (Net)",Own,Some post secondary or college diploma,58,No,No,Female,8,1,10,9,3
 aEN40xdM,Northwest,Ward 2,"$120,000 and over (Net)",Own,Some post secondary or college diploma,18,No,No,Male,7,2,10,9,3
 fVT58roP,Northwest,Ward 2,"$120,000 and over (Net)",Own,Some post secondary or college diploma,59,No,No,Female,9,3,7,9,2
-aTZ29cvF,Northwest,Ward 1,Don't Know,Own,Don't Know,89,No,Don't Know,Male,5,2,8,8,4
+aTZ29cvF,Northwest,Ward 1,Don't Know,Own,Completed high school or less,89,No,Don't Know,Male,5,2,8,8,4
 yNW90wiP,Northwest,Ward 4,"$105,000 to just under $120,000",Own,Completed university degree or post-grad degree,71,No,No,Male,7,1,8,8,3
 hGJ52bpY,Northwest,Ward 1,Don't Know,Own,Completed high school or less,35,No,Yes,Female,8,2,9,8,3
 eAV97znM,Northwest,Ward 2,"$120,000 and over (Net)",Own,Completed high school or less,19,No,No,Male,9,3,6,8,3
@@ -499,7 +499,7 @@ qAV50wnI,Northwest,Ward 1,"$120,000 and over (Net)",Own,Completed university deg
 hCW30mxW,Northwest,Ward 4,"$45,000 to just under $60,000",Own,Completed university degree or post-grad degree,71,No,Yes,Male,7,3,6,7,4
 wHW69iuZ,Northwest,Ward 4,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,60,No,Yes,Male,7,3,6,8,3
 jXN51ahY,Northeast,Ward 4,Don't Know,Own,Completed university degree or post-grad degree,44,No,No,Female,8,2,6,7,3
-xKZ37fqX,Northwest,Ward 2,Don't Know,Rent,Some post secondary or college diploma,,Don't Know,Don't Know,Male,5,3,5,5,3
+xKZ37fqX,Northwest,Ward 2,Don't Know,Rent,Some post secondary or college diploma,,No,Don't Know,Male,5,3,5,5,3
 gTV77gdR,Northeast,Ward 3,"$120,000 and over (Net)",Own,Completed high school or less,62,No,No,Male,8,3,7,7,3
 jJA71utW,Northwest,Ward 1,"$30,000 to just under $45,000",Own,Completed high school or less,66,No,No,Female,8,3,3,10,3
 jKN93apC,Northeast,Ward 10,"$30,000 to just under $45,000",Rent,Some post secondary or college diploma,32,Yes,Yes,Male,8,1,9,10,4
@@ -587,7 +587,7 @@ nJV15roL,Northeast,Ward 5,"Less than $30,000",Rent,Completed high school or less
 tBQ36qmB,Northeast,Ward 10,Don't Know,Own,Some post secondary or college diploma,63,No,Yes,Male,7,2,9,9,3
 xDT63qlR,Northeast,Ward 10,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,51,No,No,Female,6,3,4,8,3
 dXS98ceS,Northeast,Ward 10,"$75,000 to just under $90,000",Own,Completed university degree or post-grad degree,53,Yes,Yes,Male,10,3,1,1,1
-dKS30qsJ,Northwest,Ward 2,Don't Know,Own,Don't Know,,No,No,Male,8,2,8,8,4
+dKS30qsJ,Northwest,Ward 2,Don't Know,Own,Completed high school or less,,No,No,Male,8,2,8,8,4
 aWU43thE,Northeast,Ward 10,Don't Know,Own,Completed university degree or post-grad degree,38,Yes,No,Male,9,1,7,8,4
 eHM13niW,Northwest,Ward 1,"$105,000 to just under $120,000",Own,Completed university degree or post-grad degree,70,No,No,Male,8,1,6,6,4
 tFY16zqN,Southwest,Ward 13,"$60,000 to just under $75,000",Own,Some post secondary or college diploma,60,No,Yes,Female,7,2,8,8,3
@@ -811,7 +811,7 @@ vAC25ymI,Southwest,Ward 6,"$30,000 to just under $45,000",Own,Completed high sch
 kIR11fxA,Southwest,Ward 6,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,52,No,No,Male,8,2,8,8,4
 aUO22hoM,Southwest,Ward 8,"$45,000 to just under $60,000",Own,Completed university degree or post-grad degree,61,No,No,Female,8,2,7,10,3
 cQK59slG,Southwest,Ward 8,"$105,000 to just under $120,000",Own,Some post secondary or college diploma,55,Yes,No,Female,10,3,10,10,4
-hTX15ppC,Southwest,Ward 6,"$30,000 to just under $45,000",Own,Don't Know,72,No,No,Male,7,3,10,10,4
+hTX15ppC,Southwest,Ward 6,"$30,000 to just under $45,000",Own,Completed high school or less,72,No,No,Male,7,3,10,10,4
 cGE80arL,Southwest,Ward 6,"$105,000 to just under $120,000",Own,Some post secondary or college diploma,47,Yes,No,Male,7,3,8,10,4
 tUU61ksM,Southwest,Ward 11,"$90,000 to just under $105,000",Own,Completed university degree or post-grad degree,61,No,Yes,Female,8,3,6,8,2
 rWQ90iuQ,Southwest,Ward 6,Don't Know,Own,Completed university degree or post-grad degree,42,Yes,No,Female,7,3,6,7,3
@@ -822,7 +822,7 @@ wQG56leE,Southwest,Ward 11,Don't Know,Own,Completed university degree or post-gr
 kDC63flL,Southwest,Ward 6,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,56,No,No,Male,8,2,10,10,4
 gQH79gqS,Northeast,Ward 9,"Less than $30,000",Own,Completed university degree or post-grad degree,67,No,No,Female,6,2,10,10,2
 qGL39ecY,Northwest,Ward 1,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,40,Yes,No,Female,9,2,9,9,3
-hOE11zlO,Southwest,Ward 11,Don't Know,Own,Don't Know,,No,Yes,Female,7,3,3,5,3
+hOE11zlO,Southwest,Ward 11,Don't Know,Own,Completed high school or less,,No,Yes,Female,7,3,3,5,3
 oIV94pgS,Southwest,Ward 6,"$120,000 and over (Net)",Own,Some post secondary or college diploma,46,Yes,No,Female,8,3,4,6,4
 tDJ82fbN,Southwest,Ward 6,"$90,000 to just under $105,000",Own,Some post secondary or college diploma,63,No,Yes,Female,7,2,5,5,3
 wZW39irS,Northwest,Ward 4,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,52,No,No,Female,8,2,8,8,4
@@ -865,7 +865,7 @@ xCT76rhE,Northwest,Ward 1,"$120,000 and over (Net)",Own,Completed university deg
 uPQ11niI,Northwest,Ward 10,"Less than $30,000",Own,Completed high school or less,76,No,No,Female,8,2,7,9,2
 iYA20htJ,Northeast,Ward 10,"$105,000 to just under $120,000",Own,Completed university degree or post-grad degree,68,No,No,Male,8,2,8,7,4
 mTB32vlF,Southeast,Ward 14,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,24,No,No,Female,8,2,9,8,4
-dVW78fmE,Southeast,Ward 11,Don't Know,Own,Don't Know,,Don't Know,Don't Know,Male,1,3,1,1,1
+dVW78fmE,Southeast,Ward 11,Don't Know,Own,Completed high school or less,,No,Don't Know,Male,1,3,1,1,1
 dEA46zlU,Northwest,Ward 7,"$45,000 to just under $60,000",Own,Completed high school or less,70,No,No,Female,5,3,5,4,2
 bTJ51rwY,Southeast,Ward 12,Don't Know,Own,Completed high school or less,58,No,No,Female,7,3,6,8,4
 wUE57qgV,Northeast,Ward 5,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,34,Yes,Yes,Male,9,2,7,7,3
@@ -986,7 +986,7 @@ rVJ53psI,Southeast,Ward 14,"$60,000 to just under $75,000",Own,Some post seconda
 mJV60whL,Southeast,Ward 12,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,43,Yes,Yes,Female,9,2,10,5,4
 wOL27yqX,Northeast,Ward 10,"$60,000 to just under $75,000",Rent,Some post secondary or college diploma,28,No,No,Male,8,2,8,8,3
 dSF62daT,Northwest,Ward 2,"$120,000 and over (Net)",Own,Some post secondary or college diploma,59,No,No,Female,7,3,8,8,4
-yUE58ryK,Southeast,Ward 12,Don't Know,Own,Don't Know,,Don't Know,Don't Know,Male,7,3,7,7,3
+yUE58ryK,Southeast,Ward 12,Don't Know,Own,Completed high school or less,,No,Don't Know,Male,7,3,7,7,3
 kFU60dnN,Southeast,Ward 12,"$120,000 and over (Net)",Own,Completed high school or less,58,No,Don't Know,Female,5,3,1,5,3
 mSA17iqH,Southeast,Ward 12,"$90,000 to just under $105,000",Own,Completed high school or less,70,No,No,Female,5,2,2,10,4
 jPR28hnH,Southwest,Ward 14,"$120,000 and over (Net)",Own,Completed high school or less,68,No,No,Male,7,2,6,6,3
@@ -1122,7 +1122,7 @@ sDM88kwS,Southwest,Ward 8,Don't Know,Own,Completed university degree or post-gra
 tEA22lnC,Southwest,Ward 8,"$30,000 to just under $45,000",Rent,Completed university degree or post-grad degree,61,No,No,Female,6,2,4,9,4
 oKO62bzI,Southwest,Ward 8,"$120,000 and over (Net)",Own,Some post secondary or college diploma,61,No,No,Male,8,3,,7,3
 hWV91jgZ,Southwest,Ward 8,"$30,000 to just under $45,000",Own,Completed university degree or post-grad degree,64,No,No,Female,8,2,7,8,3
-nIG44boS,Southwest,Ward 8,"$90,000 to just under $105,000",Own,Don't Know,92,No,No,Male,10,2,9,9,3
+nIG44boS,Southwest,Ward 8,"$90,000 to just under $105,000",Own,Completed high school or less,92,No,No,Male,10,2,9,9,3
 jRR26uaG,Southwest,Ward 8,"$90,000 to just under $105,000",Own,Completed university degree or post-grad degree,61,No,No,Female,6,3,7,7,2
 pTU72ebT,Southwest,Ward 8,"Less than $30,000",Own,Some post secondary or college diploma,63,No,Yes,Female,8,3,7,9,4
 hMR27pwU,Southeast,Ward 7,Don't Know,Own,Completed university degree or post-grad degree,51,No,Yes,Male,9,2,10,10,3
@@ -1264,7 +1264,7 @@ aSS97ilT,Southwest,Ward 8,"$90,000 to just under $105,000",Own,Completed high sc
 pHG53hjR,Southeast,Ward 11,"$75,000 to just under $90,000",Own,Completed university degree or post-grad degree,46,Yes,No,Male,9,3,6,6,4
 gSE32yeX,Southwest,Ward 13,"$105,000 to just under $120,000",Own,Completed university degree or post-grad degree,67,No,No,Female,8,2,8,9,4
 pFG61wgN,Southwest,Ward 11,"$75,000 to just under $90,000",Own,Completed high school or less,65,No,No,Female,8,2,8,9,3
-eHW13mhQ,Southwest,Ward 11,"$45,000 to just under $60,000",Rent,Don't Know,19,No,No,Male,8,2,9,9,3
+eHW13mhQ,Southwest,Ward 11,"$45,000 to just under $60,000",Rent,Completed high school or less,19,No,No,Male,8,2,9,9,3
 oME38mmP,Southwest,Ward 13,Don't Know,Own,Completed university degree or post-grad degree,58,No,No,Male,8,3,9,9,4
 rHH64dbL,Southwest,Ward 13,"$90,000 to just under $105,000",Own,Some post secondary or college diploma,72,No,No,Female,8,2,6,8,3
 rCL49ffZ,Southwest,Ward 13,"$120,000 and over (Net)",Own,Some post secondary or college diploma,52,No,No,Male,8,1,8,10,4
@@ -1454,7 +1454,7 @@ jPV37ikF,Northwest,Ward 7,Don't Know,Own,Completed university degree or post-gra
 vCP26yrN,Northwest,Ward 7,"$120,000 and over (Net)",Own,Completed high school or less,81,No,Yes,Female,8,1,8,8,4
 tGL93gmT,Northwest,Ward 2,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,47,No,No,Female,8,2,6,6,4
 iMZ76vaZ,Northwest,Ward 4,"$30,000 to just under $45,000",Rent,Some post secondary or college diploma,36,Yes,No,Female,4,3,1,1,4
-jRH18zwG,Southeast,Ward 13,Don't Know,Own,Completed university degree or post-grad degree,,Don't Know,No,Male,4,3,5,4,3
+jRH18zwG,Southeast,Ward 13,Don't Know,Own,Completed university degree or post-grad degree,,No,No,Male,4,3,5,4,3
 bNB71ftM,Northwest,Ward 7,"$45,000 to just under $60,000",Own,Completed university degree or post-grad degree,66,No,No,Female,8,1,5,8,4
 oOA96hlK,Northwest,Ward 7,"$90,000 to just under $105,000",Own,Completed high school or less,61,No,No,Female,6,2,5,6,3
 iKC79olR,Northwest,Ward 7,"$120,000 and over (Net)",Rent,Completed university degree or post-grad degree,46,Yes,No,Female,8,3,7,8,3
@@ -1536,7 +1536,7 @@ iNJ56wzL,Southeast,Ward 12,"$105,000 to just under $120,000",Own,Some post secon
 pVX82woY,Southeast,Ward 12,Don't Know,Other,Some post secondary or college diploma,31,No,No,Female,8,2,4,8,4
 rDC19sjC,Southeast,Ward 12,"$120,000 and over (Net)",Own,Some post secondary or college diploma,42,Yes,No,Male,10,2,10,7,1
 tIY72pzH,Southeast,Ward 14,"$120,000 and over (Net)",Neither,Some post secondary or college diploma,24,No,No,Male,8,1,10,9,3
-bQX92gcB,Southeast,Ward 12,Don't Know,Own,Completed university degree or post-grad degree,41,Don't Know,No,Male,8,2,9,9,3
+bQX92gcB,Southeast,Ward 12,Don't Know,Own,Completed university degree or post-grad degree,41,No,No,Male,8,2,9,9,3
 hHI97raW,Southeast,Ward 14,"$60,000 to just under $75,000",Own,Some post secondary or college diploma,32,Yes,No,Male,8,3,8,8,4
 lPN88cpQ,Southeast,Ward 14,"$120,000 and over (Net)",Own,Completed high school or less,48,No,No,Male,7,3,10,10,4
 oCI18efQ,Southeast,Ward 14,"$90,000 to just under $105,000",Own,Some post secondary or college diploma,50,No,No,Female,9,1,8,9,3
@@ -1568,7 +1568,7 @@ kDM26khQ,Southwest,Ward 11,"$105,000 to just under $120,000",Own,Completed unive
 cHH86suO,Southwest,Ward 11,"$105,000 to just under $120,000",Own,Completed university degree or post-grad degree,83,No,No,Male,8,2,10,10,4
 gGJ59quU,Southeast,Ward 9,"$120,000 and over (Net)",Own,Completed high school or less,37,No,No,Female,8,2,10,10,3
 fMF60bqE,Southeast,Ward 12,"$105,000 to just under $120,000",Own,Some post secondary or college diploma,37,No,No,Male,7,2,8,9,4
-iLR58hcY,Southwest,Ward 8,Don't Know,Own,Completed university degree or post-grad degree,61,Don't Know,Yes,Female,8,3,7,7,2
+iLR58hcY,Southwest,Ward 8,Don't Know,Own,Completed university degree or post-grad degree,61,No,Yes,Female,8,3,7,7,2
 mOE56jlT,Southeast,Ward 14,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,72,No,No,Male,8,1,8,10,2
 bSY40bxX,Southwest,Ward 8,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,62,No,No,Male,8,3,6,7,4
 uXD37qmD,Northwest,Ward 2,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,36,Yes,Yes,Male,8,2,9,9,3
@@ -1907,7 +1907,7 @@ aDK73iaT,Southeast,Ward 14,"$120,000 and over (Net)",Own,Completed university de
 sUC58bfQ,Northeast,Ward 10,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,35,No,No,Female,8,2,8,9,3
 pBT85gcK,Northwest,Ward 1,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,44,Yes,No,Male,9,1,7,9,1
 yKU77ogK,Northwest,Ward 1,"$45,000 to just under $60,000",Own,Completed university degree or post-grad degree,30,Yes,No,Male,7,3,4,4,3
-wGW59psA,Southwest,Ward 8,"$30,000 to just under $45,000",Rent,Completed university degree or post-grad degree,48,Don't Know,Yes,Female,10,1,10,10,4
+wGW59psA,Southwest,Ward 8,"$30,000 to just under $45,000",Rent,Completed university degree or post-grad degree,48,No,Yes,Female,10,1,10,10,4
 iEM46bfA,Northwest,Ward 2,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,47,Yes,No,Female,4,2,5,3,3
 oEG92zrZ,Northeast,Ward 7,"$120,000 and over (Net)",Rent,Some post secondary or college diploma,38,No,Yes,Male,8,2,8,8,1
 dNE67nkT,Southeast,Ward 14,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,38,Yes,No,Female,8,2,7,8,4
@@ -1939,7 +1939,7 @@ uWK37ifX,Southwest,Ward 11,Don't Know,Own,Some post secondary or college diploma
 dWT60jhZ,Northwest,Ward 1,"$30,000 to just under $45,000",Rent,Completed university degree or post-grad degree,34,Yes,No,Male,9,1,8,10,3
 aUC37eiW,Northwest,Ward 4,"$45,000 to just under $60,000",Own,Completed university degree or post-grad degree,69,No,No,Female,7,3,8,7,4
 bQH94ecC,Northwest,Ward 1,Don't Know,Rent,Completed university degree or post-grad degree,41,Yes,No,Female,10,2,8,9,3
-iUU74wyI,Southeast,Ward 14,Don't Know,Own,Some post secondary or college diploma,,Don't Know,No,Female,7,3,6,8,4
+iUU74wyI,Southeast,Ward 14,Don't Know,Own,Some post secondary or college diploma,,No,No,Female,7,3,6,8,4
 iDQ82xjQ,Southwest,Ward 6,"$75,000 to just under $90,000",Own,Completed university degree or post-grad degree,67,No,No,Female,9,2,7,8,3
 lOP71dvY,Northwest,Ward 2,"$90,000 to just under $105,000",Rent,Completed university degree or post-grad degree,33,Yes,No,Female,8,1,10,10,4
 dHS10koB,Northwest,Ward 1,"$75,000 to just under $90,000",Own,Completed high school or less,54,No,No,Male,6,3,8,8,3
@@ -2203,7 +2203,7 @@ sTE23pyB,Southeast,Ward 14,"$120,000 and over (Net)",Own,Some post secondary or 
 hTV76gkB,Northwest,Ward 7,"$30,000 to just under $45,000",Rent,Some post secondary or college diploma,21,No,No,Male,8,1,7,8,3
 iHR82thC,Southwest,Ward 11,Don't Know,Own,Completed university degree or post-grad degree,58,No,No,Male,8,2,9,9,4
 zIS29abI,Northwest,Ward 7,"$75,000 to just under $90,000",Own,Completed university degree or post-grad degree,41,No,No,Male,9,2,8,9,4
-tAP16joI,Southeast,Ward 11,Don't Know,Own,Don't Know,63,No,Don't Know,Male,8,2,8,7,3
+tAP16joI,Southeast,Ward 11,Don't Know,Own,Completed high school or less,63,No,Don't Know,Male,8,2,8,7,3
 xGL68osM,Northwest,Ward 3,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,33,Yes,No,Male,7,2,7,8,3
 nJB61opO,Southwest,Ward 13,"$120,000 and over (Net)",Rent,Some post secondary or college diploma,42,No,No,Male,7,2,3,7,4
 hBL16ioL,Southeast,Ward 14,"$105,000 to just under $120,000",Own,Completed university degree or post-grad degree,48,No,No,Male,7,3,7,7,4
@@ -2434,7 +2434,7 @@ xDG14wmW,Northeast,Ward 10,"Less than $30,000",Rent,Completed university degree 
 lSK25vkI,Southwest,Ward 6,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,38,Yes,No,Female,8,2,7,7,3
 aFX77tcC,Northwest,Ward 4,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,46,Yes,No,Male,9,2,10,10,4
 wHR40ihV,Northwest,Ward 3,"$90,000 to just under $105,000",Own,Some post secondary or college diploma,63,No,No,Female,1,3,6,10,4
-zZU13lwG,Southeast,Ward 14,"$60,000 to just under $75,000",Own,Don't Know,30,Yes,No,Male,8,2,8,8,4
+zZU13lwG,Southeast,Ward 14,"$60,000 to just under $75,000",Own,Completed high school or less,30,Yes,No,Male,8,2,8,8,4
 uVR79zuX,Northwest,Ward 2,"$75,000 to just under $90,000",Own,Completed university degree or post-grad degree,51,Yes,Yes,Male,6,2,6,6,2
 mSL23osL,Southeast,Ward 11,"$75,000 to just under $90,000",Own,Completed high school or less,31,No,No,Female,7,3,6,7,3
 oNY50lrR,Northwest,Ward 3,"$120,000 and over (Net)",Own,Some post secondary or college diploma,28,No,No,Female,10,2,10,10,3
@@ -2492,7 +2492,7 @@ wHO56etA,Northeast,Ward 10,Don't Know,Own,Completed university degree or post-gr
 zKU35tiQ,Northwest,Ward 2,"$30,000 to just under $45,000",Own,Completed university degree or post-grad degree,58,No,No,Female,8,4,5,8,4
 uWS85ewX,Northeast,Ward 5,"$75,000 to just under $90,000",Own,Some post secondary or college diploma,56,Yes,No,Male,6,2,7,5,3
 oUG25jeX,Northwest,Ward 4,"$60,000 to just under $75,000",Own,Completed university degree or post-grad degree,56,No,Yes,Female,6,3,6,7,3
-iKF22ryH,Southeast,Ward 14,"$90,000 to just under $105,000",Own,Some post secondary or college diploma,43,Don't Know,No,Female,8,2,7,7,3
+iKF22ryH,Southeast,Ward 14,"$90,000 to just under $105,000",Own,Some post secondary or college diploma,43,No,No,Female,8,2,7,7,3
 tCL73llI,Northeast,Ward 9,"$45,000 to just under $60,000",Rent,Some post secondary or college diploma,49,No,Yes,Male,6,3,7,8,3
 pUZ75twV,Southwest,Ward 8,"$120,000 and over (Net)",Own,Completed university degree or post-grad degree,39,No,No,Male,8,1,8,5,2
 vIA43nyJ,Southeast,Ward 14,"$45,000 to just under $60,000",Rent,Some post secondary or college diploma,36,Yes,No,Female,7,3,6,8,3
